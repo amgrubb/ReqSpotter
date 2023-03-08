@@ -113,7 +113,7 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 		return _theGCController;
 	}
 	
-	private  GCController() {
+	GCController() {
 	}
 	
 	public void initialize(String wordNetDictionaryLocation, boolean parse) {
@@ -189,7 +189,7 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 		    props.put("annotators", "tokenize, ssplit, pos, posfix, lemma, ner, parse");
 		    
 		    props.put("customAnnotatorClass.posfix","edu.ncsu.csc.nl.model.CorrectPOSTags");
-		    _pipeline = new StanfordCoreNLP(props);				
+		    _pipeline = new StanfordCoreNLP(props);
 		}
 	}
 	
@@ -324,8 +324,20 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 	    	System.out.println(e);
 	    	System.exit(0);
 	    }
+	    
+	    // MY CHANGES HERE BELOW
 	    		
-		controller._mainFrame.setVisible(true);   //GUI now has control of the application.
+		// controller._mainFrame.setVisible(true);   //GUI now has control of the application.
+
+		Sasha sasha = Sasha.getSasha();
+		sasha.testMethod("this is a test");
+		
+		
+		
+	}
+	
+	public static void testMethod() {
+		System.out.println("test!!");
 	}
 	
 	public void  valueChanged(ListSelectionEvent lse) {
@@ -472,7 +484,7 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 		}
 	}
 	
-	private void loadJSONDocumentFromFile(File file) throws Exception {
+	void loadJSONDocumentFromFile(File file) throws Exception {
 		_currentDocument = NLDocument.readFromJSONFile(file);	
 		_currentFileLocation = file;
 		
@@ -480,7 +492,8 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 			_currentDocumentID = _currentDocument.getElementAt(0).getDocumentID();
 		}
 		
-		setViewWithDocument();
+		// setViewWithDocument();
+		// this.setCurrentSentence(0,true,true);
 	}	
 	
 	private void loadJSONDocument() {
