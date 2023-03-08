@@ -48,7 +48,7 @@ public class Sasha {
 			
 			
 			try {
-				FileWriter outputWriter = new FileWriter("filename.txt",false);
+				FileWriter outputWriter = new FileWriter("filename.txt",true);
 				outputWriter.write("sentence: \n");
 				outputWriter.write(s._orginalSentence);
 				outputWriter.write("\n");
@@ -78,7 +78,7 @@ public class Sasha {
 			ClassificationResult r = GCController.getTheGCController().getInstanceLearner().getClassification(sentence,GCController.getTheGCController().getKForInstanceLearner(), new LevenshteinSentenceAsWordsDistance(),true);
 			
 			try {
-				FileWriter outputWriter = new FileWriter("filename.txt",false);
+				FileWriter outputWriter = new FileWriter("filename.txt",true);
 				outputWriter.write("RESULTS: \n");
 				outputWriter.write(r.toString());
 				outputWriter.write("\n");
