@@ -139,10 +139,10 @@ public class InstanceLearner {
 		}
 		java.util.Arrays.sort(distances);
 		if (verbose) {
-			System.out.println("--------------------------");
-			System.out.println("k="+k +" distance from ("+distanceAlgorithm.getMethodName()+"): "+testSentence.getSentence());
+			// System.out.println("--------------------------");
+			// System.out.println("k="+k +" distance from ("+distanceAlgorithm.getMethodName()+"): "+testSentence.getSentence());
 			for (int i=distances.length-1; i>=0; i--) {
-				System.out.println(i+") "+distances[i].distance+": ("+distances[i].pos+") "  +_trainedSentences.get(distances[i].pos).sentence);
+				// System.out.println(i+") "+distances[i].distance+": ("+distances[i].pos+") "  +_trainedSentences.get(distances[i].pos).sentence);
 			}
 		}
 		

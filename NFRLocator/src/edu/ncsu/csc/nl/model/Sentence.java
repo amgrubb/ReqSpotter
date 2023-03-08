@@ -71,7 +71,7 @@ public class Sentence  implements Serializable, ClassifiableItem, Comparable<Sen
 	
 	private SemanticGraph _stanfordGraph;
 	
-	private String _orginalSentence;
+	public String _orginalSentence;
 	
 	private String _parserSentence;
 
@@ -99,7 +99,7 @@ public class Sentence  implements Serializable, ClassifiableItem, Comparable<Sen
 	private double _referredToSentence = UNASSIGNED_SENTENCE_POSITION;
 	
 	/** Have this sentence been processed or not? This only will get set if we are learning mode... */
-	private boolean _processed = false;
+	public boolean _processed = false;
 	
 	/** have we completely trained this sentence or not? */ 
 	private boolean _trained; 
