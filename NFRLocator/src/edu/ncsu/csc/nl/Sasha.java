@@ -15,6 +15,8 @@ import edu.ncsu.csc.nl.model.classification.ClassificationType;
 import edu.ncsu.csc.nl.model.distance.LevenshteinSentenceAsWordsDistance;
 import edu.ncsu.csc.nl.model.ml.ClassificationResult;
 import edu.ncsu.csc.nl.model.ml.InstanceLearner;
+import edu.ncsu.csc.nl.Sonora;
+
 
 public class Sasha {
 	
@@ -29,16 +31,20 @@ public class Sasha {
 	public void testMethod(String message) {
 		System.out.println(message);
 		
-		moveSentencesFromJSONtoLearner("/Users/sashayeutseyeva/Documents/Smith/Thesis/slankasPresentation/amb-parsed.json");
-		
+		moveSentencesFromJSONtoLearner("./learners/amb-parsed.json");
+		//call the sonora code to extract txt file from pdf
+		Sonora sonora = new Sonora();
 		InstanceLearner _theInstanceLearner = controller.getInstanceLearner();
 		
 		System.out.println("sentence in learner: ");
 		
 		System.out.println(_theInstanceLearner.getTrainedSentenceAt(1).getSentence());
 		
+		
+		Sonora.main(new String[]{});
+
 		// read sentences from txt file 
-		ArrayList<Sentence> sentencesToClassify = getSentencesFromTxtDoc("/Users/sashayeutseyeva/Documents/Smith/Thesis/slankasPresentation/2009-warc-III.txt");
+		ArrayList<Sentence> sentencesToClassify = getSentencesFromTxtDoc("./reqsTXT/2010.txt");
 		
 		ArrayList<String> foundRequirements = new ArrayList<String>();
 		// classify sentences 
@@ -215,7 +221,6 @@ public class Sasha {
 		return allSentences;
 		
 	}
-	
 	
 	private  Sasha() {
 	}
