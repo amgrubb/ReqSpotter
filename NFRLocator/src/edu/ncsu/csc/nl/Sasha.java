@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 import edu.ncsu.csc.nl.model.NLDocument;
 import edu.ncsu.csc.nl.model.Sentence;
@@ -36,36 +38,104 @@ public class Sasha {
 		System.out.println(_theInstanceLearner.getTrainedSentenceAt(1).getSentence());
 		
 		// read sentences from txt file 
-		
 		ArrayList<Sentence> sentencesToClassify = getSentencesFromTxtDoc("/Users/sashayeutseyeva/Documents/Smith/Thesis/slankasPresentation/2009-warc-III.txt");
 		
+		ArrayList<String> foundRequirements = new ArrayList<String>();
 		// classify sentences 
 		
+		// cycle over all the sentences we need to classify, do this in 3 iterations
 		
-		
-		for (int i = 0; i<sentencesToClassify.size();i++) {
-			Sentence s = sentencesToClassify.get(i);
+		for (int n = 0; n<3;n++) {
 			
-			
-			try {
-				FileWriter outputWriter = new FileWriter("filename.txt",true);
-				outputWriter.write("sentence: \n");
-				outputWriter.write(s._orginalSentence);
-				outputWriter.write("\n");
-				outputWriter.close();
-			} catch (IOException e) {
-				System.out.println("An error occurred.");
-				e.printStackTrace();
+			for (int i = 0; i<sentencesToClassify.size();i++) {
+				// get the sentence to classify
+				Sentence s = sentencesToClassify.get(i);
+							
+//				try {
+//					FileWriter outputWriter = new FileWriter("filename.txt",true);
+//					outputWriter.write("sentence: \n");
+//					outputWriter.write(s._orginalSentence);
+//					outputWriter.write("\n");
+//					outputWriter.close();
+//				} catch (IOException e) {
+//					System.out.println("An error occurred.");
+//					e.printStackTrace();
+//				}
+				
+				// get the sentence classifications
+				getSentenceClassification(s);
+				
+				printSentenceClassifications(s);
+				
+				// add the data to the training set under a condition
+				// for now, if it is marked as a requirement add it to training dataset
+				
+				if (checkIfSentenceRequirement(s)) {
+					s.processTrainedSentence();
+					// if it is marked as a requirement, add it to a list of requirements, just the sentence itself
+					foundRequirements.add(s._orginalSentence);
+				}
+				
+				
+				
 			}
 			
-			getSentenceClassification(s);
+			Set<String> uniqueReqs = new HashSet<String>(foundRequirements);
+			
+			System.out.println("***********ROUND" + n + " RESULTS***********");
+			System.out.println("requirements found: "+uniqueReqs.size());
+			
+			
+			for (String sentence : uniqueReqs) {
+				System.out.println(sentence);
+			}
+			
 			
 		}
 		
-		// get it to print out the classifications of each sentence along with the sentence
+		
+		
+		// get it to write out the list of requirements to a document i guess? 
 		
 		
 
+	}
+	
+	private void printSentenceClassifications(Sentence sentence) {
+		
+		String classificationsString = sentence.getAllBooleanClassificationsAsString();
+		
+		if (!classificationsString.matches("")) {
+			System.out.println(sentence._orginalSentence);
+			System.out.println("Boolean classifications: "+sentence.getAllBooleanClassificationsAsString());
+			
+			checkIfSentenceRequirement(sentence);
+		}
+		
+		
+		
+	}
+	
+	private boolean checkIfSentenceRequirement(Sentence sentence) {
+		
+		String classificationsString = sentence.getAllBooleanClassificationsAsString();
+		
+		if (classificationsString.matches("")) {
+			return false;
+		} 
+
+		return true;
+		
+		
+//		HashMap<String, ClassificationType> classificationsMap = sentence.getClassifications();
+//		
+//		for (String name: classificationsMap.keySet()) {
+//		    String key = name.toString();
+//		    String value = classificationsMap.get(name).toString();
+//		    System.out.println(key + " " + value);
+//		}
+//		
+		
 	}
 	
 	private void getSentenceClassification( Sentence sentence) {
@@ -87,14 +157,12 @@ public class Sasha {
 				System.out.println("An error occurred.");
 				e.printStackTrace();
 			}
-			
-			// HashMap<String, ClassificationType> classificationList = r.classifications;
 				
 			//System.out.println(r.k+": "+r);
 			
 			//Let's add a threshold on this
 			if (r.averageDistance > (sentence.getNumberOfNodes()*.85)) {
-				System.out.println("Not using results of IBL - avg distance > .85 * number of nodes");
+				// System.out.println("Not using results of IBL - avg distance > .85 * number of nodes");
 			}
 			else {
 				if (!sentence.isTrained()) {
