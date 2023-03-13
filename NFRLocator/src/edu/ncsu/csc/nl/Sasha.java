@@ -31,10 +31,20 @@ public class Sasha {
 	public void testMethod(String message) {
 		System.out.println(message);
 		
-		moveSentencesFromJSONtoLearner("./learners/amb-parsed.json");
+		InstanceLearner _theInstanceLearner = controller.getInstanceLearner();
+		
+		// TODO: make a function that creates a learner from all the JSON files available using Slankas functions
+		// TODO: make a function that saves the learner to specified location using Slankas functions
+		
+		moveSentencesFromJSONtoLearner("./trainingData/amb-parsed.json");
+		System.out.println("##### number of sentences in learner: "+_theInstanceLearner.getTrainedSentences().size());
+		
+		moveSentencesFromJSONtoLearner("./trainingData/CMS-DUA.json");
+		System.out.println("##### number of sentences in learner: "+_theInstanceLearner.getTrainedSentences().size());
+		
 		//call the sonora code to extract txt file from pdf
 		Sonora sonora = new Sonora();
-		InstanceLearner _theInstanceLearner = controller.getInstanceLearner();
+		
 		
 		System.out.println("sentence in learner: ");
 		
@@ -108,6 +118,19 @@ public class Sasha {
 		}
 		
 		
+		
+	}
+	
+	private void validateResults(String answerKeyFile, String resultsFile) {
+		
+		// TODO: make this function
+		
+		// load answerKeyFile reqs into a Set 
+		
+		// load resultsFile reqs into an array list
+		
+		// calculate how many false positives, false negatives, true positives there are
+		// maybe figure out how to do true negatives? Do we care? 
 		
 	}
 	
