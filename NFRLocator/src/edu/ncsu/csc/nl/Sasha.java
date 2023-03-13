@@ -50,22 +50,11 @@ public class Sasha {
 			for (int i = 0; i<sentencesToClassify.size();i++) {
 				// get the sentence to classify
 				Sentence s = sentencesToClassify.get(i);
-							
-//				try {
-//					FileWriter outputWriter = new FileWriter("filename.txt",true);
-//					outputWriter.write("sentence: \n");
-//					outputWriter.write(s._orginalSentence);
-//					outputWriter.write("\n");
-//					outputWriter.close();
-//				} catch (IOException e) {
-//					System.out.println("An error occurred.");
-//					e.printStackTrace();
-//				}
 				
 				// get the sentence classifications
 				getSentenceClassification(s);
 				
-				printSentenceClassifications(s);
+				// printSentenceClassifications(s);
 				
 				// add the data to the training set under a condition
 				// for now, if it is marked as a requirement add it to training dataset
