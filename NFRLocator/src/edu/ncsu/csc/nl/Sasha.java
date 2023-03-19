@@ -1,19 +1,29 @@
 package edu.ncsu.csc.nl;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
+import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import javax.swing.JFileChooser;
 
 import edu.ncsu.csc.nl.model.NLDocument;
 import edu.ncsu.csc.nl.model.Sentence;
 import edu.ncsu.csc.nl.model.classification.ClassificationType;
 import edu.ncsu.csc.nl.model.distance.LevenshteinSentenceAsWordsDistance;
 import edu.ncsu.csc.nl.model.ml.ClassificationResult;
+import edu.ncsu.csc.nl.model.ml.Document;
 import edu.ncsu.csc.nl.model.ml.InstanceLearner;
 import edu.ncsu.csc.nl.Sonora;
 
@@ -27,14 +37,71 @@ public class Sasha {
 	private File _currentFileLocation = null;
 	
 	private GCController controller = GCController.getTheGCController();
+//	private InstanceLearner _theInstanceLearner = new InstanceLearner(); //maybe create new learner
+	
+	
+	/**
+	*
+	Reads training data from folder of JSON files and adds trained sentences to instance learner.
+	@param path 					the path to the folder containing the training data
+	@throws FileNotFoundException 	if the specified path is not found
+	@throws ClassNotFoundException 	if the NLDocument class cannot be found
+	@throws IOException 			if an I/O error occurs while reading the training data
+	
+	*/
+	public void updateLearnerFromTrainingData(String path) throws FileNotFoundException, ClassNotFoundException, IOException {
+	    File folder = new File(path);
+	    if (folder.exists() && folder.isDirectory()) {
+	    	java.io.File[] items = folder.listFiles();
+	        if (items != null) {
+	            for (File item : items) {
+	                if (item.isFile() && item.getName().endsWith(".json")) {
+	                    NLDocument document = NLDocument.readFromJSONFile(item);
+	                    document.addAllTrainedSentencesToInstanceLearner();
+	                }
+	            }
+	        }
+	    }
+	}
+	
+	/**
+
+	Saves an instance learner to a file in the specified location. The saved file is either serialized
+	or not based on the value of the serialized parameter.
+	@param learner 			the instance learner to be saved (if saving default learner, use _theInstanceLearner )
+	@param serialized 		true if the learner should be serialized, false otherwise
+	@param location 		the path of the directory where the file should be saved
+	@throws IOException 	if an error occurs while writing the file
+	*/
+	
+	private void saveLearner(InstanceLearner learner, boolean serialized, String location) throws Exception {
+		File folder = new File(location);
+	    if (folder.exists() && folder.isDirectory()) {
+	        File f = new File(folder, "learner");
+	        try {
+	            if (serialized) {
+	                learner.saveToSerializedObjectFile(f);
+	            } else {
+	                learner.saveToFile(f);
+	            }
+	            System.out.println("Learner saved successfully.");
+	        } catch (IOException e) {
+	            System.err.println("Error saving learner: " + e.getMessage());
+	        }
+	    } else {
+	        System.err.println("Invalid folder location specified.");
+	    }
+	}
+
+	
 	
 	public void testMethod(String message) {
 		System.out.println(message);
 		
 		InstanceLearner _theInstanceLearner = controller.getInstanceLearner();
 		
-		// TODO: make a function that creates a learner from all the JSON files available using Slankas functions
-		// TODO: make a function that saves the learner to specified location using Slankas functions
+		// TODO: call & test methods saveLearner and updateLearnerFromTrainingData (see above)
+		
 		
 		moveSentencesFromJSONtoLearner("./trainingData/amb-parsed.json");
 		System.out.println("##### number of sentences in learner: "+_theInstanceLearner.getTrainedSentences().size());
@@ -116,9 +183,6 @@ public class Sasha {
 			
 			checkIfSentenceRequirement(sentence);
 		}
-		
-		
-		
 	}
 	
 	private void validateResults(String answerKeyFile, String resultsFile) {
@@ -213,11 +277,8 @@ public class Sasha {
 		for (int i = 0; i<allSentences.size();i++) {
 			Sentence s = allSentences.get(i);
 			// System.out.println(s._orginalSentence);
-			s.moveSentenceToInstanceLearner();
-			
+			s.moveSentenceToInstanceLearner();	
 		}
-		
-		
 	}
 	
 	private ArrayList<Sentence> getSentencesFromTxtDoc(String fileLocation) {
