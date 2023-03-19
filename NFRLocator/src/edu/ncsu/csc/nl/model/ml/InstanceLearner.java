@@ -336,7 +336,6 @@ public class InstanceLearner {
 	
 	public void saveToFile(java.io.File f) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		
 		mapper.writeValue(f, _trainedSentences.toArray(new Sentence[0]));		// this uses UTF-8
 	}
 	
