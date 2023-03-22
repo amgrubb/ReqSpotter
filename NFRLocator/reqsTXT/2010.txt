@@ -1,7 +1,7 @@
 DigitalHome Software Requirements Specification HomeOwner Inc.
-DigitalHomeOwner Division Version 1.3 October 27, 2010 Change History   *Added (A), Modified (M), Deleted (D)  Version Date AMD* Author Description Change Request # 1.0 10/11/2010 A Michel First Version Jackson 1.1 10/15/2010 AM Michel Updated version, based on 1,2,3, 4, 5, Jackson external review 6, 7 1.2 10/18/2010 AM Michel Updated version, based on 8, 9 Jackson management requests 1.3 10/27/2010 AM Michel Updated version, based on 10, 11, 12 Jackson SRS Inspection.
+DigitalHomeOwner Division Version 1.3 October 27, 2010 Change History *Added (A), Modified (M), Deleted (D) Version Date AMD* Author Description Change Request # 1.0 10/11/2010 A Michel First Version Jackson 1.1 10/15/2010 AM Michel Updated version, based on 1,2,3, 4, 5, Jackson external review 6, 7 1.2 10/18/2010 AM Michel Updated version, based on 8, 9 Jackson management requests 1.3 10/27/2010 AM Michel Updated version, based on 10, 11, 12 Jackson SRS Inspection.
 Added Use Case Model.
-Digital Home Project, SRS 1.3 Page 2 Table of Contents  1.
+Digital Home Project, SRS 1.3 Page 2 Table of Contents 1.
 Introduction ....................................................................................................
 4 2.
 Team Project Information ..............................................................................
@@ -32,7 +32,7 @@ Other Non-Functional Requirements ..............................................
 Glossary ......................................................................................................
 14 7.
 References ..................................................................................................
-15     Digital Home Project, SRS 1.3 Page 3 DigitalHome Requirements Specification 1.
+15 Digital Home Project, SRS 1.3 Page 3 DigitalHome Requirements Specification 1.
 Introduction This document specifies the requirements for the development of a “Smart House”, called DigitalHome (DH), by the DigitalHomeOwner Division of HomeOwner Inc.
 A “Smart House” is a home management system that allows home residents to easily manage their daily lives by providing for a lifestyle that brings together security, environmental and energy management (temperature, humidity and lighting), entertainment, and communications.
 The Smart House components consist of household devices (e.g., a heating and air conditioning unit, a security system, and small appliances and lighting units, etc.), sensors and controllers for the devices, communication links between the components, and a computer system, which will manage the components.
@@ -43,7 +43,7 @@ Hence, the SRS is not intended as a comprehensive or complete specification of D
 There is a supplementary document that provides additional detail and information about the DigitalHome requirements: the Digital Home Use Case Model [HO2010].
 These document were prepared by the DigitalHomeOwner Division, in consultation with the Marketing Division of HomeOwner Inc.
 2.
-Team Project Information • Members/Roles − Team Leader: Disha Chandra − System Analyst and Requirements Manager: Michel Jackson − System Architect and Design Manager: Yao Wang − Planning Manager: Georgia Magee − Quality Manager: Massood Zewail − Construction Engineer: all team members • Schedule − Need Assessment – 9/15/2010 − Project Launch – 9/16/2010 − Project Plan – 9/27/2010 − Requirements – 10/27/2010 − Architecture - 11/15/2010 − Cycle 1 Construction – 12/15/2010 − Cycle 2 Construction – 1/17/2011 − Cycle 3 Construction –2/14/2011 − Cycle 4 Construction –3/24/2011 − Cycle 5 Construction –4/18/2011   Digital Home Project, SRS 1.3 Page 4 − Cycle 6 Construction –5/16/2011 − System Testing – 6/20/2011 − Acceptance Testing – 7/14/2011 − Postmortem Analysis – 8/1/2011  3.
+Team Project Information • Members/Roles − Team Leader: Disha Chandra − System Analyst and Requirements Manager: Michel Jackson − System Architect and Design Manager: Yao Wang − Planning Manager: Georgia Magee − Quality Manager: Massood Zewail − Construction Engineer: all team members • Schedule − Need Assessment – 9/15/2010 − Project Launch – 9/16/2010 − Project Plan – 9/27/2010 − Requirements – 10/27/2010 − Architecture - 11/15/2010 − Cycle 1 Construction – 12/15/2010 − Cycle 2 Construction – 1/17/2011 − Cycle 3 Construction –2/14/2011 − Cycle 4 Construction –3/24/2011 − Cycle 5 Construction –4/18/2011 Digital Home Project, SRS 1.3 Page 4 − Cycle 6 Construction –5/16/2011 − System Testing – 6/20/2011 − Acceptance Testing – 7/14/2011 − Postmortem Analysis – 8/1/2011 3.
 Overall description 3.1 Product Description and Scope The Digital Home system, for the purposes of this document, is a system that will allow a home user to manage devices that control the environment of a home.
 The user communicates through a personal web page on the DigitalHome web server or on a local home server.
 The DH web server communicates, through a home wireless gateway device, with the sensor and controller devices in the home.
@@ -57,7 +57,7 @@ There will be no actual physical home and all sensors and controllers will be si
 3.2.1.4 A Master user will be designated, who shall be able to change the configuration of the system.
 For example, a Master User shall be able to add a user account or change the default parameter settings.
 He/she will have the same right as the DH Technician, described in section 3.2.2.4.
-3.2.2 DigitalHome Technician  Digital Home Project, SRS 1.3 Page 5 3.2.2.1 A DH Technician is responsible for setting up and maintaining the configuration of a DH system.
+3.2.2 DigitalHome Technician Digital Home Project, SRS 1.3 Page 5 3.2.2.1 A DH Technician is responsible for setting up and maintaining the configuration of a DH system.
 3.2.2.2 A DH Technician has experience with the type of hardware, software, and web services associated with a system like the DH system.
 3.2.2.3 A DH Technician is specially trained by DigitalHomeOwner to be familiar with the functionality, architecture, and operation of the DH system product.
 3.2.2.4 A DH Technician will have rights beyond the DH General User, capable of setting up and making changes in the configuration of the system (e.g.,setting system parameters and establishing user accounts), and starting and stopping operation of the DH System.
@@ -74,7 +74,7 @@ There will be no actual physical home and all sensors and controllers will be si
 However, the simulated environment will be realistic and adhere to the physical properties and constraints of an actual home and to real sensors and controllers.
 3.3.7 Major changes to this document (e.g., changes in requirements) must be approved by the Director of the DigitalHomeOwner Division.
 3.4 Operational Environment Although the system to be developed is a “proof of concept” system intended to help Homeowner Inc.
-to make marketing and development decisions, the following sections describe operational environment concerns and constraints;  Digital Home Project, SRS 1.3 Page 6 some of them are related to issues of long-term production and marketing of a DigitalHome product.
+to make marketing and development decisions, the following sections describe operational environment concerns and constraints; Digital Home Project, SRS 1.3 Page 6 some of them are related to issues of long-term production and marketing of a DigitalHome product.
 3.4.1 The home system shall require an Internet Service Provider (ISP).
 The ISP should be widely available (cable modem, high speed DSL), such as Bright House or Bellsouth FastAccess.
 3.4.2 DH Home Web Server 3.4.2.1 A DH System shall have the capability to establish an individual home web server hosted on a home computer.
@@ -111,7 +111,7 @@ There is a DH Use Case Model in the Appendix, which provides an overview of the 
 4.1.4 The DigitalHome shall be equipped with various environmental controllers and sensors (temperature controller-sensors: thermostats, humidity controller-sensors: humidistats, contact sensors, security sound and light alarms, and power switches).
 4.1.5 Using wireless communication, sensor values can be read and saved in the home database.
 4.1.6 Controller values can be sent to controllers to change the DH environment.
-4.2 Thermostat Requirements 4.2.1 The DigitalHome programmable thermostat shall allow a user to  Digital Home Project, SRS 1.3 Page 8 monitor and control a home’s temperature from any location, using a web ready computer, cell phone, or PDA.
+4.2 Thermostat Requirements 4.2.1 The DigitalHome programmable thermostat shall allow a user to Digital Home Project, SRS 1.3 Page 8 monitor and control a home’s temperature from any location, using a web ready computer, cell phone, or PDA.
 4.2.1.1 A DH user shall be able to read the temperature at a thermostat position.
 4.2.1.2 A DH user shall be able to set the thermostat temperatures to between 60 ° F and 80 ° F, inclusive, at one degree increments.
 4.2.2 Up to eight thermostats shall be placed in rooms throughout the home.
@@ -128,7 +128,7 @@ The system shall adhere to the standards, policies and procedures of the America
 4.3.1.2 A DH user shall be able to set the humidity level for a humidistat, from 30% to 60%, inclusive a 1% increments.
 4.3.2 Up to eight humidistats shall be placed in rooms throughout the home.
 4.3.2.1 A single humidistat shall be placed in an enclosed space (e.g., a room in the house) for which the humidity is to be controlled.
-4.3.2.2 If a humdistat device allows a user to make a manual temperature setting, the setting shall remain in effect until the  Digital Home Project, SRS 1.3 Page 9 end of the planned or default time period, at which time the planned or default setting will be used for the next time period.
+4.3.2.2 If a humdistat device allows a user to make a manual temperature setting, the setting shall remain in effect until the Digital Home Project, SRS 1.3 Page 9 end of the planned or default time period, at which time the planned or default setting will be used for the next time period.
 4.3.2.3 For each humidistat, up to twenty-four one hour settings per day for every day of the week can be scheduled.
 4.3.3 A DigitalHome system shall use wireless signals to communicate, through the master control unit, with the humidistats.
 4.4 Security System Requirements 4.4.1 The DigitalHome security system consists of contact sensors and a set security alarms.
@@ -142,7 +142,7 @@ The system shall adhere to the standards, policies and procedures of the America
 4.5.5 If a user changes the state of power switch device manually, the device shall remain in that state until the end of the planned or default time period, at which time the planned or default setting will be used for the next time period.
 4.6 DH Planning and Reporting Requirements 4.6.1 DigitalHome Planner shall provide a user with the capability to direct the system to set various preset home parameters (temperature, humidity, security contacts, and on/off appliance/light status) for certain time periods.
 4.6.2 DigitalHome provides a monthly planner.
-4.6.2.1 For a given month and year, a user shall be able to create or  Digital Home Project, SRS 1.3 Page 10 modify a month plan that specifies for each day, for up to four daily time periods, the environmental parameter settings (temperature, humidity, contact sensors and power switches).
+4.6.2.1 For a given month and year, a user shall be able to create or Digital Home Project, SRS 1.3 Page 10 modify a month plan that specifies for each day, for up to four daily time periods, the environmental parameter settings (temperature, humidity, contact sensors and power switches).
 4.6.2.2 A user shall be able to override planned parameter values, through the DH website, or if available, through manual switches on household devices 4.6.3 For a given month and year, in the past two years, DigitalHome shall be able to provide a report on the management and control of the home.
 4.6.3.1 The month report shall contain daily average, maximum (with time) and minimum (with time) values of temperature and humidity for each thermostat and humidistat, respectively.
 4.6.3.2 The month report shall provide the day and time for which any security breaches occurred, that is, when the security alarms were activated.
@@ -172,15 +172,15 @@ The user documentation shall include the following: 5.7.1.1 An FAQ section – a
 This shall include information on limitations and constraints on parameter settings and sensor reading accuracy.
 5.7.1.3 A section that describes how to use the DH Planner.
 Digital Home Project, SRS 1.3 Page 13 6.
-Glossary ASHRAE - American Society of Heating, Refrigerating and Air-Conditioning Engineers  Authentication - any process by which it is verified that someone is who they claim they are.
+Glossary ASHRAE - American Society of Heating, Refrigerating and Air-Conditioning Engineers Authentication - any process by which it is verified that someone is who they claim they are.
 This typically involves submission and verification of a username and a password.
-Broadband Internet - a high data rate Internet access, typically contrasted with slower dial-up access  DH (Digital Home) - the name of the prototype smart home product that is be produced by DigitalHomeOwner  DigitalHomeOwner – the division of HomeOwner Inc.
-responsible for producing DigitalHome products  DSL (Digital Subscriber Line) - a family of technologies that provides digital data transmission over the wires of a local telephone network  Encryption - the process of transforming information (referred to as plaintext) using an algorithm (called cipher) to make it unreadable to anyone except those possessing special knowledge, usually referred to as a key.
-FAQ – frequently asked question  Gateway Device - a home networking device used to connect devices in the home to the Internet or other Wide Area Networks.
+Broadband Internet - a high data rate Internet access, typically contrasted with slower dial-up access DH (Digital Home) - the name of the prototype smart home product that is be produced by DigitalHomeOwner DigitalHomeOwner – the division of HomeOwner Inc.
+responsible for producing DigitalHome products DSL (Digital Subscriber Line) - a family of technologies that provides digital data transmission over the wires of a local telephone network Encryption - the process of transforming information (referred to as plaintext) using an algorithm (called cipher) to make it unreadable to anyone except those possessing special knowledge, usually referred to as a key.
+FAQ – frequently asked question Gateway Device - a home networking device used to connect devices in the home to the Internet or other Wide Area Networks.
 HomeOwner Inc.
-- the largest national retail chain serving the needs of home owners in building, furnishing, repairing, and improving their homes  HVAC - Heating, Ventilation and Air Conditioning  Humidistat - an instrument that measures and controls relative humidity  ISP -Internet Service Provider  PDA – Personal Digital Assistant  RF – Radio Frequency  Security Breach – an external act that bypasses or contravenes the digital home security system.
+- the largest national retail chain serving the needs of home owners in building, furnishing, repairing, and improving their homes HVAC - Heating, Ventilation and Air Conditioning Humidistat - an instrument that measures and controls relative humidity ISP -Internet Service Provider PDA – Personal Digital Assistant RF – Radio Frequency Security Breach – an external act that bypasses or contravenes the digital home security system.
 For example, if an intruder opens a door where the contact sensor is set to “on”, the system will sense a ‘security breach”.
-Digital Home Project, SRS 1.3 Page 14 Set Point – a numeric valuable that establishes the desire value of an environmental quality (e.g., a temperature value of 70° F  SRS – Software Requirements Specification  Transport Layer Security - cryptographic protocols that provide security for communications over networks such as the Internet  7.
+Digital Home Project, SRS 1.3 Page 14 Set Point – a numeric valuable that establishes the desire value of an environmental quality (e.g., a temperature value of 70° F SRS – Software Requirements Specification Transport Layer Security - cryptographic protocols that provide security for communications over networks such as the Internet 7.
 References [ASHRAE 2010] Website for American Society of Heating, Refrigerating and Air- Conditioning Engineers, accessed October 2010, http://www.ashrae.org/.
 [HLRD 2010] DigitalHomeOwner Division, Digital Home High Level Requirements Definition, Homeowner Inc., September 2010.
 [HO2305] Sykes, J., and Rook, R., Guidelines for Developing HomeOwner Technical Reports, HO2305., Homeowner Inc., March 2002.
@@ -192,4 +192,4 @@ References [ASHRAE 2010] Website for American Society of Heating, Refrigerating 
 [IEEE1016] IEEE Std 1016-2009, IEEE Standard for Information Technology - Systems Design - Software Design Descriptions, Institute of Electrical and Electronics Engineers, Inc., 2009.
 [IEEE1028] IEEE Std 1028-2008, IEEE Standard for Software Reviews and Audits, Institute of Electrical and Electronics Engineers, Inc., 2008.
 [Meyer 2004] Meyer, G., Smart Home Hacks: Tips & Tools for Automating Your House, O’Reilly, 2004.
-Digital Home Project, SRS 1.3 Page 15  
+Digital Home Project, SRS 1.3 Page 15 

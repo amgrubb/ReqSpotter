@@ -95,13 +95,14 @@ public class Sasha {
 
 	
 	
-	public void testMethod(String message) {
+	public void testMethod(String message) throws Exception {
 		System.out.println(message);
 		
 		InstanceLearner _theInstanceLearner = controller.getInstanceLearner();
 		
 		// TODO: call & test methods saveLearner and updateLearnerFromTrainingData (see above)
-		
+		updateLearnerFromTrainingData("./trainingData" );
+		saveLearner(_theInstanceLearner, false,"./learners" );
 		
 		moveSentencesFromJSONtoLearner("./trainingData/amb-parsed.json");
 		System.out.println("##### number of sentences in learner: "+_theInstanceLearner.getTrainedSentences().size());

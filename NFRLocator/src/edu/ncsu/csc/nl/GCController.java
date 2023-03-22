@@ -247,8 +247,9 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 	
 	/**
 	 * @param args
+	 * @throws Exception 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		try {
 		    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
