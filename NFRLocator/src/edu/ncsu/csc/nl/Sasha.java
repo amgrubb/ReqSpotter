@@ -211,6 +211,11 @@ public class Sasha {
 		
 		// get it to write out the list of requirements to a document i guess? 
 		
+		// TODO: method that writes requirements to txt file
+		
+		// TODO: validation function that takes in answer key and results and produces precision and recall
+		
+		
 		
 
 	}
