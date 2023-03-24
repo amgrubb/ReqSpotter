@@ -6,7 +6,7 @@ public class Sonora {
 
     public static void main(String[] args) {
 
-        String fileName = "./reqsTXT/2010.txt"; 
+        String fileName = "./reqsTXT/maple-bakery.txt"; 
     
         try {
             BufferedReader reader = new BufferedReader(new FileReader(fileName));

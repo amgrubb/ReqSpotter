@@ -94,46 +94,35 @@ public class Sasha {
 	}
 
 	
-	
-	public void testMethod(String message) throws Exception {
-		System.out.println(message);
-		
-		InstanceLearner _theInstanceLearner = controller.getInstanceLearner();
-		
-		// TODO: call & test methods saveLearner and updateLearnerFromTrainingData (see above)
-		updateLearnerFromTrainingData("./trainingData" );
-		saveLearner(_theInstanceLearner, false,"./learners" );
-		
-		moveSentencesFromJSONtoLearner("./trainingData/amb-parsed.json");
-		System.out.println("##### number of sentences in learner: "+_theInstanceLearner.getTrainedSentences().size());
-		
-		moveSentencesFromJSONtoLearner("./trainingData/CMS-DUA.json");
-		System.out.println("##### number of sentences in learner: "+_theInstanceLearner.getTrainedSentences().size());
-		
-		//call the sonora code to extract txt file from pdf
-		Sonora sonora = new Sonora();
-		
-		
-		System.out.println("sentence in learner: ");
-		
-		System.out.println(_theInstanceLearner.getTrainedSentenceAt(1).getSentence());
-		
-		
-		Sonora.main(new String[]{});
-
-		// read sentences from txt file 
-		ArrayList<Sentence> sentencesToClassify = getSentencesFromTxtDoc("./reqsTXT/2010.txt");
-		
+	private ArrayList<String> classification1(ArrayList<Sentence> sentences) {
+		// just go through and classify with learner
 		ArrayList<String> foundRequirements = new ArrayList<String>();
-		// classify sentences 
 		
-		// cycle over all the sentences we need to classify, do this in 3 iterations
+		for (int i = 0; i<sentences.size();i++) {
+			// get the sentence to classify
+			Sentence s = sentences.get(i);
+			
+			// get the sentence classifications
+			getSentenceClassification(s);
+			
+			if (checkIfSentenceRequirement(s)) {
+				foundRequirements.add(s._orginalSentence);
+			}
+		}
+		
+		return foundRequirements;
+		
+	}
+	
+	private ArrayList<String> classification2(ArrayList<Sentence> sentences) {
+		// 3 cycles, add as you go
+		ArrayList<String> foundRequirements = new ArrayList<String>();
 		
 		for (int n = 0; n<3;n++) {
 			
-			for (int i = 0; i<sentencesToClassify.size();i++) {
+			for (int i = 0; i<sentences.size();i++) {
 				// get the sentence to classify
-				Sentence s = sentencesToClassify.get(i);
+				Sentence s = sentences.get(i);
 				
 				// get the sentence classifications
 				getSentenceClassification(s);
@@ -155,17 +144,69 @@ public class Sasha {
 			
 			Set<String> uniqueReqs = new HashSet<String>(foundRequirements);
 			
-			System.out.println("***********ROUND" + n + " RESULTS***********");
-			System.out.println("requirements found: "+uniqueReqs.size());
-			
-			
-			for (String sentence : uniqueReqs) {
-				System.out.println(sentence);
-			}
+//			System.out.println("***********ROUND" + n + " RESULTS***********");
+//			System.out.println("requirements found: "+uniqueReqs.size());
+//			
+//			
+//			for (String sentence : uniqueReqs) {
+//				System.out.println(sentence);
+//			}
 			
 			
 		}
 		
+		return foundRequirements;
+		
+	}
+	
+	private ArrayList<String> classification3(ArrayList<Sentence> sentences) {
+		// 3 cycles, add after each round
+		ArrayList<String> foundRequirements = new ArrayList<String>();
+		
+		return foundRequirements;
+		
+	}
+	
+	private ArrayList<String> classification4(ArrayList<Sentence> sentences) {
+		// user input required classification. 
+		ArrayList<String> foundRequirements = new ArrayList<String>();
+		
+		return foundRequirements;
+		
+	}
+	
+	
+	public void testMethod() throws Exception {
+		
+		InstanceLearner _theInstanceLearner = controller.getInstanceLearner();
+		
+		File learnerFile = new File("./learners/learner");
+		if(!learnerFile.exists()) { 
+			// learner doesn't exist
+			updateLearnerFromTrainingData("./trainingData" );
+			saveLearner(_theInstanceLearner, true,"./learners" );
+		}
+		
+		learnerFile = new File("./learners/learner");	
+		_theInstanceLearner.loadFromSerializedFile(learnerFile);
+	
+		//call the sonora code to extract txt file from pdf
+		//TODO: change Sonora to take in a string of the txt file of the PDF
+		// TODO: change sonora to create just a generic byproduct.txt file? Don't take the same name as original txt file I think
+		Sonora sonora = new Sonora();
+		Sonora.main(new String[]{});
+
+		// read sentences from txt file 
+		//TODO: change to take in string of txt file that sonora creates 
+		ArrayList<Sentence> sentencesToClassify = getSentencesFromTxtDoc("./reqsTXT/maple-bakery.txt");
+		
+		
+		// classify sentences 
+		ArrayList<String> foundRequirements = classification1(sentencesToClassify);
+		
+		for (String req: foundRequirements) {
+			System.out.println(req);
+		}
 		
 		
 		// get it to write out the list of requirements to a document i guess? 

@@ -331,7 +331,7 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 		// controller._mainFrame.setVisible(true);   //GUI now has control of the application.
 
 		Sasha sasha = Sasha.getSasha();
-		sasha.testMethod("this is a test");
+		sasha.testMethod();
 		
 		
 		
