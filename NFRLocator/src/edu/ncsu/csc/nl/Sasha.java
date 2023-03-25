@@ -254,16 +254,7 @@ public class Sasha {
 		} 
 
 		return true;
-		
-		
-//		HashMap<String, ClassificationType> classificationsMap = sentence.getClassifications();
-//		
-//		for (String name: classificationsMap.keySet()) {
-//		    String key = name.toString();
-//		    String value = classificationsMap.get(name).toString();
-//		    System.out.println(key + " " + value);
-//		}
-//		
+	
 		
 	}
 	
