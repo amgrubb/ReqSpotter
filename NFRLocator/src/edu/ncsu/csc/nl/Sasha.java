@@ -1,5 +1,7 @@
 package edu.ncsu.csc.nl;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -77,7 +79,7 @@ public class Sasha {
 	private void saveLearner(InstanceLearner learner, boolean serialized, String location) throws Exception {
 		File folder = new File(location);
 	    if (folder.exists() && folder.isDirectory()) {
-	        File f = new File(folder, "learner");
+	        File f = new File(folder, "learner-small");
 	        try {
 	            if (serialized) {
 	                learner.saveToSerializedObjectFile(f);
@@ -117,6 +119,7 @@ public class Sasha {
 	private ArrayList<String> classification2(ArrayList<Sentence> sentences) {
 		// 3 cycles, add as you go
 		ArrayList<String> foundRequirements = new ArrayList<String>();
+		Set<String> uniqueReqs = new HashSet<String>();
 		
 		for (int n = 0; n<3;n++) {
 			
@@ -124,25 +127,23 @@ public class Sasha {
 				// get the sentence to classify
 				Sentence s = sentences.get(i);
 				
-				// get the sentence classifications
-				getSentenceClassification(s);
-				
-				// printSentenceClassifications(s);
-				
-				// add the data to the training set under a condition
-				// for now, if it is marked as a requirement add it to training dataset
-				
-				if (checkIfSentenceRequirement(s)) {
-					s.processTrainedSentence();
-					// if it is marked as a requirement, add it to a list of requirements, just the sentence itself
-					foundRequirements.add(s._orginalSentence);
+				if (!foundRequirements.contains(s._orginalSentence)) {
+					// get the sentence classifications
+					getSentenceClassification(s);
+					
+					// add the data to the training set under a condition
+					// for now, if it is marked as a requirement add it to training dataset
+					
+					if (checkIfSentenceRequirement(s)) {
+						s.processTrainedSentence();
+						// if it is marked as a requirement, add it to a list of requirements, just the sentence itself
+						foundRequirements.add(s._orginalSentence);
+					}
 				}
-				
-				
 				
 			}
 			
-			Set<String> uniqueReqs = new HashSet<String>(foundRequirements);
+			uniqueReqs = new HashSet<String>(foundRequirements);
 			
 //			System.out.println("***********ROUND" + n + " RESULTS***********");
 //			System.out.println("requirements found: "+uniqueReqs.size());
@@ -155,7 +156,13 @@ public class Sasha {
 			
 		}
 		
-		return foundRequirements;
+		ArrayList<String> uniqueReqArray = new ArrayList<String>();
+		
+		for (String req: uniqueReqs) {
+			uniqueReqArray.add(req);
+		}
+		
+		return uniqueReqArray;
 		
 	}
 	
@@ -180,43 +187,41 @@ public class Sasha {
 		
 		InstanceLearner _theInstanceLearner = controller.getInstanceLearner();
 		
-		File learnerFile = new File("./learners/learner");
+		File learnerFile = new File("./learners/learner-small");
 		if(!learnerFile.exists()) { 
 			// learner doesn't exist
 			updateLearnerFromTrainingData("./trainingData" );
 			saveLearner(_theInstanceLearner, true,"./learners" );
 		}
 		
-		learnerFile = new File("./learners/learner");	
+		learnerFile = new File("./learners/learner-small");	
 		_theInstanceLearner.loadFromSerializedFile(learnerFile);
+		
+//		moveSentencesFromJSONtoLearner("./trainingData/amb-parsed.json");
+//		moveSentencesFromJSONtoLearner("./trainingData/promisedataALL - parsed.json");
+//		saveLearner(_theInstanceLearner, true,"./learners" );
+		
 	
 		//call the sonora code to extract txt file from pdf
 		//TODO: change Sonora to take in a string of the txt file of the PDF
 		// TODO: change sonora to create just a generic byproduct.txt file? Don't take the same name as original txt file I think
 		Sonora sonora = new Sonora();
 		Sonora.main(new String[]{});
+		
+		// Sonora.createFormattedTxtFile("./reqsTXT/2010.txt");
 
 		// read sentences from txt file 
 		//TODO: change to take in string of txt file that sonora creates 
-		ArrayList<Sentence> sentencesToClassify = getSentencesFromTxtDoc("./reqsTXT/maple-bakery.txt");
+		ArrayList<Sentence> sentencesToClassify = getSentencesFromTxtDoc("./reqsTXT/2009-warc-III.txt");
 		
 		
 		// classify sentences 
-		ArrayList<String> foundRequirements = classification1(sentencesToClassify);
-		
-		for (String req: foundRequirements) {
-			System.out.println(req);
-		}
-		
+		ArrayList<String> foundRequirements = classification2(sentencesToClassify);
 		
 		// get it to write out the list of requirements to a document i guess? 
 		
 		// TODO: method that writes requirements to txt file
-		
-		// TODO: validation function that takes in answer key and results and produces precision and recall
-		
-		
-		
+		validateResults("./reqsTXTanswers/2009-warc-III-reqs.txt",foundRequirements);
 
 	}
 	
@@ -232,16 +237,59 @@ public class Sasha {
 		}
 	}
 	
-	private void validateResults(String answerKeyFile, String resultsFile) {
+	private void validateResults(String answerKeyFile, ArrayList<String> foundRequirements) {
+		Set<String> trueRequirements = getReqsFromAnswerKey(answerKeyFile);
 		
-		// TODO: make this function
+		int truePositive = 0;
+		int numberFound = foundRequirements.size();
+		int numberOfTrueRequirements = trueRequirements.size();
 		
-		// load answerKeyFile reqs into a Set 
 		
-		// load resultsFile reqs into an array list
+		for (String foundRequirement: foundRequirements) {
+			if (trueRequirements.contains(foundRequirement)) {
+				truePositive++;	
+			} 
+		}
+	
+		float recall = (float) truePositive/numberOfTrueRequirements;
+		float precision = (float) truePositive/numberFound;
 		
-		// calculate how many false positives, false negatives, true positives there are
-		// maybe figure out how to do true negatives? Do we care? 
+		System.out.println("RECALL: " + recall);
+		System.out.println("PRECISION: " + precision);
+		
+		printReqsNotRecognized(answerKeyFile, foundRequirements);
+	}
+	
+	private void printReqsNotRecognized(String answerKeyFile, ArrayList<String> foundRequirements) {
+		Set<String> trueRequirements = getReqsFromAnswerKey(answerKeyFile);
+		
+		System.out.println("Reqs not found: **********");
+		
+		for (String req:trueRequirements) {
+			if (!foundRequirements.contains(req)) {
+				System.out.println(req);
+			}
+		}
+		
+	}
+	
+	private Set<String> getReqsFromAnswerKey(String answerKeyFileName){
+		Set<String> reqs = new HashSet<String>();
+		
+		try {
+            BufferedReader reader = new BufferedReader(new FileReader(answerKeyFileName));
+            String line;
+            while ((line = reader.readLine()) != null) {
+            	reqs.add(line);
+                // remove extra spaces within the same sentence
+            }
+            reader.close();
+   
+        } catch (IOException e) {
+            System.out.println("An error occurred while removing line breaks and extra spaces: " + e.getMessage());
+        }	
+		
+		return reqs;
 		
 	}
 	
@@ -281,7 +329,8 @@ public class Sasha {
 			//System.out.println(r.k+": "+r);
 			
 			//Let's add a threshold on this
-			if (r.averageDistance > (sentence.getNumberOfNodes()*.85)) {
+			// SASHA CHANGED THRESHOLD NUMBER
+			if (r.averageDistance > (sentence.getNumberOfNodes()*0.85)) {
 				// System.out.println("Not using results of IBL - avg distance > .85 * number of nodes");
 			}
 			else {
