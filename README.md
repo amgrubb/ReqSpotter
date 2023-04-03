@@ -16,7 +16,7 @@ To Run NFRLocator on your local machine:
     Program Arguments: -w "User/PathToTheDictionaryOnYourDevice/WordNetDictionary" -l
     VM Arguments: -Xmx4096m  
 4. Make sure that you are using the correct version of Java. This project uses Java 1.8:
-  a) If you are using a different version, download Java 1.8; refer to this link (https://www.oracle.com/java/technologies/downloads/).
-  b) Go to preferences on Eclipse, switch Java JRE to 1.8, click apply, and close.
-  c) Go to Eclipse preferences and switch compiler compliance level to 1.8.
+    a) If you are using a different version, download Java 1.8; refer to this link (https://www.oracle.com/java/technologies/downloads/).
+    b) Go to preferences on Eclipse, switch Java JRE to 1.8, click apply, and close.
+    c) Go to Eclipse preferences and switch compiler compliance level to 1.8.
 5. You can run the project locally on Eclipse or through the terminal.
