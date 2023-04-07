@@ -1,7 +1,7 @@
-NFRLocator for GitRE
+ReqSpotter for GitRE
 ==========
 This repo contains additions to code from https://github.com/RealsearchGroup/NFRLocator. 
-The original project finds and categorizes non-functional requirements within unconstrained natural language documents.It contains NFR category listing, labeled documents, and software
+The original project finds and categorizes non-functional requirements within unconstrained natural language documents. It contains NFR category listing, labeled documents, and software
 
 **Our additions/interpretation:**
 
