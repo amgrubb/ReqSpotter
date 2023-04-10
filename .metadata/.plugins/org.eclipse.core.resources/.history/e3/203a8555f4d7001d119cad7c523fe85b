@@ -29,6 +29,7 @@ import edu.ncsu.csc.nl.model.distance.LevenshteinSentenceAsWordsDistance;
 import edu.ncsu.csc.nl.model.ml.ClassificationResult;
 import edu.ncsu.csc.nl.model.ml.Document;
 import edu.ncsu.csc.nl.model.ml.InstanceLearner;
+import edu.ncsu.csc.nl.Sonora;
 import java.io.*;
 
 
@@ -58,6 +59,7 @@ public class SRLocator {
 	@param txtPath 			The path to the formatted text file that will be created from the PDF file
 	@throws Exception 		If an error occurs during the process of extracting requirements
 	*/
+	
 	public void driver(String pdfPath, String txtPath) throws Exception {
 		InstanceLearner _theInstanceLearner = controller.getInstanceLearner();
 		
