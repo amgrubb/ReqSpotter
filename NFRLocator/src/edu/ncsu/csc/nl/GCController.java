@@ -330,8 +330,8 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 	    		
 		// controller._mainFrame.setVisible(true);   //GUI now has control of the application.
 
-		Sasha sasha = Sasha.getSasha();
-		sasha.testMethod();
+	    SRLocator reqLocator = SRLocator.getSRLocator();
+	    reqLocator.driver("./reqsPDF/2010 - home 1.3.pdf", "./reqsTXT/test.txt");
 		
 		
 		
