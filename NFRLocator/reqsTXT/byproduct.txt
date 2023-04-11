@@ -1,0 +1,105 @@
+Maple Bakery Website Requirements
+Introduction
+Maple Bakery opened in 2020 during the COVID-19 pandemic.
+The founder, Sophia Doe,
+opened the bakery after quitting her job as a software engineer to pursue her passion for
+baking that she discovered while working from home.
+Maple Bakery sells all sorts of baked
+goods including different types of loaves of bread, pastries, fine cakes, and sandwiches.
+The store also sells coffee, tea, and juice for in-person customers.
+Currently, Maple Bakery
+has one physical location in Northampton, MA.
+However, Sophia Doe is considering
+expanding and opening a location in Boston in the next 5 years.
+Most of Maple Bakery’s customers are people living locally in Northampton, however there
+are a few loyal regular customers that drive all the way from Boston, Connecticut, and even Canada to purchase Maple Bakery’s
+baked goods.
+With an increase in popularity, Maple Bakery is in need of a sales website so that customers can order ahead of
+time as well as select shipping for their purchases.
+Purpose: The purpose of this requirements specification is to provide an overview of Maple Bakery and a list of the requirements
+for the Maple Bakery website.
+Upon completion, this SRS document is an outline of everything that should be completed by the
+Smith College student web developers.
+This document is furthermore a resource for professors to evaluate the work of the student
+web developers.
+Scope: The Maple Bakery website will serve as a point of information for customers and a storefront for goods.
+The website will
+include information about the bakery such as the hours of operation, location, and important news like sales or new varieties of
+baked goods.
+Furthermore, Maple Bakery’s customers will be able to use the website to purchase products either for in-store
+pickup or shipment to addresses.
+General Description
+Overview: This website will behave as a storefront for Maple Bakery.
+It will allow the administrator to update information about the
+bakery and goods sold, as well as process orders.
+The website will be a point of contact between customers and Maple Bakery
+and should be easy to update.
+Administrator side: The administrator will be responsible for updating information about the bakery such as the hours of
+operation and location.
+The administrator has access to the customer accounts associated with the website and will use this
+website to keep track of the customer orders.
+End users side: The end users, who are Maple Bakery’s customers, will use the website to look up information about the bakery
+such as the bakery’s business hours.
+They will also have the ability to create an account on the website to remember purchases
+and payment information.
+With this, they will be able to place orders for pick-up or shipment.
+Maple Bakery Website Software Requirements Specification - Page 2 of 2
+Project Outline
+Below are things to include for Maple Bakery’s website, organized by category.
+Administrative side
+The website shall provide a way to save store products in a database.
+The website shall allow the administrator to view all users’ orders and mark their status such as received, processing, shipped,
+etc.
+The website shall store a record of all payments to Maple Bakery.
+When an administrator is logged in, the website shall allow the administrator to view created users’ accounts and information
+about the accounts.
+The website shall allow the administrator to grant users gift card balances to their account.
+Short description: This use case allows the administrator to add an item to the storefront.
+Actors: System, Administrator
+Pre-conditions: The administrator is on the ‘Add an Item’ page.
+Flow:
+1.
+The administrator inputs the name, description, and price of the product.
+2.
+The quantity text box becomes editable.
+3.
+The administrator types in the quantity of that item that is in stock.
+4.
+The administrator uploads a photo of the product.
+5.
+The administrator edits the toggle to indicate whether the product can be shipped.
+6.
+The “Upload” button becomes green, indicating the administrator inputted all the information.
+7.
+Administrator clicks the button and is shown a notification that the product has been uploaded to the database.
+Front-end side
+When first opened, the website shall prompt users to register for an account or login.
+The website accounts shall be safe and protected.
+The website shall allow the users to pay securely.
+The website shall have accounts for users that store information about the user including the credit card information, order history,
+wishlist, and shipping information.
+The website shall have an FAQ section containing information about the Bakery, including hours of operation and location.
+When the user is browsing products, the website shall display the item photo, name, and price.
+When the user is browsing products, the website shall provide capability of filtering items by category and sorting by price and
+popularity.
+When adding items to the cart, the website shall verify the user has selected the flavor and count of the item they are purchasing.
+As a customer, I want to add items to a shopping cart so that I can purchase everything with one transaction.
+As a customer, I want to add items to a wish list so that I can purchase items at a later date.
+The website must allow the user to use credit card and gift card balances to purchase baked goods if the purchase is for
+shipment.
+When the user is entering payment information, the website must allow the user to use credit cards, gift card balance, or pay in
+store to purchase baked goods if the purchase is for pick-up.
+Short description: This use case allows you to add an item to your cart.
+Actors: System, User
+Pre-conditions: The user is on the item’s page.
+Flow:
+1.
+The user selects the flavor of the item, if applicable.
+2.
+The quantity dropdown becomes visible.
+3.
+The user selects a quantity from 1 to 12.
+4.
+The “Add to cart” button becomes green.
+5.
+User clicks the button and is shown a notification that the item is in their cart.

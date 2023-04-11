@@ -326,20 +326,14 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 	    	System.exit(0);
 	    }
 	    
-	    // MY CHANGES HERE BELOW
 	    		
 		// controller._mainFrame.setVisible(true);   //GUI now has control of the application.
 
-	    SRLocator reqLocator = SRLocator.getSRLocator();
-	    reqLocator.driver("./reqsPDF/2010 - home 1.3.pdf", "./reqsTXT/test.txt");
-		
-		
+	    ReqSpotter reqLocator = ReqSpotter.getReqSpotter();
+	    reqLocator.driver("./reqsPDF/maple-bakery.pdf","./output/maple-bakery-reqs.txt");
 		
 	}
 	
-	public static void testMethod() {
-		System.out.println("test!!");
-	}
 	
 	public void  valueChanged(ListSelectionEvent lse) {
 		//System.out.println(lse);

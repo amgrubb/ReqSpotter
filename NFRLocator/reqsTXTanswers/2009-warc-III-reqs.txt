@@ -1,27 +1,14 @@
 NFR 1 — The tools shall be able to process a set of multiple WARC files at the same time.
-NFR 2 — The tools shall be able to scale to process large collections using distributed processing and data transport (see FRS 10 and 11)
-NFR 3 — The tools shall offer best possible performance to correctly process large collections (I/Obound)
-NFR 4 — The tools shall be able to run on multiple machines but will not provide functionality for dealing with hardware failures (out of scope)
-NFR 5 — Implementation of the tools shall avoid unnecessary technology dependencies and shall not include development of partner-specific integration technologies
-NFR 6 — The tools shall be compliant with Java development environments, by using web services, RESTful API’s, etc.
-NFR 7 — The tools shall provide logging facilities, for example, to follow command progression, i.e. process duration, output levels, etc.
-NFR 8 — The tools shall provide enhanced usability by providing easy to adapt shell script wrappers for the major commands
-NFR 9 — It shall be possible to operate the tools in modes that restrict their effects to selected collection subsets. For example, select by name (see NFR1), random sampling, etc.
+NFR 7 — The tools shall provide logging facilities, for example, to follow command progression, i.e.
+NFR 8 — The tools shall provide enhanced usability by providing easy to adapt shell script wrappers for the major commands NFR 9 — It shall be possible to operate the tools in modes that restrict their effects to selected collection subsets.
 NFR 10 — The workflow system shall have a configurable management strategy for migration from ARCs to WARCs.
-NFR 11 — The migration workflow system will be driven by command line tools and scripts
-NFR 11.1 -- Migration configurations can be built with a Web User Interface
-NFR 11.2 -- Active migrations can be monitored, paused, and restarted (a console application) with a Web
-NFR 12 — Pre and post conversion actions will be provided for at each level of the migration, e.g. record, WARC, job.
+NFR 11 — The migration workflow system will be driven by command line tools and scripts NFR 11.1 -- Migration configurations can be built with a Web User Interface NFR 11.2 -- Active migrations can be monitored, paused, and restarted (a console application) with a Web User Interface NFR 12 — Pre and post conversion actions will be provided for at each level of the migration, e.g.
 FR 1 — The migration workflow shall provide a clear Application Programming Interface (API) to handle the migration process and default configuration.
 FR 2 — The migration API will require inclusion of only one header file.
 FR 3 — A configuration must be provided explicitly, errors should be generated in the absence of a configuration.
-FR 4 — The user shall be able to provide metadata related to the conversion that will be stored in the converted files (e.g., institution, context, crawler, collection name, ...)
-FR 5 — It shall be possible to request that automatically generated migration metadata be stored in the converted files (e.g., OS/Kernel type, original ARC name, ARC size, ARC digests, conversion timestamp,ARC record offset, ...)
-NFR 13 — IIPC members should provide us with the default METADATA they want to be included for migration.
-FR 6 — The migration workflow shall be able to call external tools and services (e.g., database queries,shell commands, web service).
-FR 7 — The migration process shall use persistent, opaque, unique, and global identifiers for records access.
-FR 8 — A (default) external tool (e.g., ClamAV) will be used to scan files before conversion (pre-conversion step).
-FR 9 — The API should be flexible enough to allow external tools such as JHOVE, DROID to be used for
+FR 4 — The user shall be able to provide metadata related to the conversion that will be stored in the converted files (e.g., institution, context, crawler, collection name, ...) FR 5 — It shall be possible to request that automatically generated migration metadata be stored in the converted files (e.g., OS/Kernel type, original ARC name, ARC size, ARC digests, conversion timestamp, ARC record offset, ...) NFR 13 — IIPC members should provide us with the default METADATA they want to be included for migration.
+WARC Tools Phase III Functional Requirements Specification 4 FR 6 — The migration workflow shall be able to call external tools and services (e.g., database queries, shell commands, web service).
+FR 9 — The API should be flexible enough to allow external tools such as JHOVE, DROID to be used for file format identification.
 FR 10 — The ARC to WARC migration should be able to run on multiple machines that will be easy to deploy.
 FR 11 —Logging during the migration may be turned on/off at any time .
 FR 12 — Software checkpoints (such as start-trans, end-trans) may be added during processing for managing atomic transactions (e.g., operations on a file, these must start and complete to be accepted in the migration), except where operating system limitations would prohibit it.
@@ -29,26 +16,21 @@ FR 13 — It shall be possible to perform a “dry-run migration”.
 NFR 14 — Deduplication may be run before migration, inside a batch process.
 FR 14 — Duplicate detection shall find and report WARC records with the same checksums.
 FR 15 — To validate that the migration succeeded, arc_warc_verify will use the METADATA included in the newly generated WARC files to match records with their corresponding ARC files (see FR4, and FR5).
+An option will be provided to let the tool sample a random percentage of records rather than perform an exhaustive check.
 FR 15.1 — Core validation shall use payload checksum comparisons.
 FR 16 — Sampling will be provided where applicable to quickly validate the conversions (FR 15.1 and FR 18 for example).
-FR 17 — Validation shall use Heritrix’s arcreader to double-check that the original ARC record was correctly converted to WARC.
-FR 18 — It shall be possible to perform a round trip validation: migrate the newly created WARC file back to ARC and compare both checksums (NFR 5)
-FR 19 — It shall be possible to repackage WARC files by filtering records based on URL (regular expressions).
-FR 20 — It shall be possible to repackage WARC files by filtering records based on MIME-Types.
-FR 21 — It shall be possible to repackage WARC files by filtering records based on size.
+FR 17 — Validation shall use Heritrix’s arcreader to double check that the original ARC record was correctly converted to WARC.
+FR 18 — It shall be possible to perform a round trip validation: migrate the newly created WARC file back to ARC and compare both checksums (NFR 5) Repackaging Tool A tool will be created to extract WARC records from a collection and generate a new set of WARC files.
+FR 19 — It shall be possible to repackage WARC files by filtering records based on URL (regular expressions) FR 20 — It shall be possible to repackage WARC files by filtering records based on MIME-Types.
+WARC Tools Phase III Functional Requirements Specification 6 FR 21 — It shall be possible to repackage WARC files by filtering records based on size.
 FR 22 — It shall be possible to repackage WARC files by filtering records based on timestamp (e.g., dates interval).
 FR 23 — It shall be possible to repackage WARC files by filtering on any field in the WARC specification.
-FR 24 -- Repackaging will allow pre and post record, file and job operations.
-FR 24.1 -- Pre-operation can prevent a file or record being processed by returning value.
-FR 25 — Each repackaged WARC file shall include a user-defined METADATA record that will describe the extraction context (e.g., filter used, involved WARC files, ... - see also FR4).
-FR 26 — The migration framework shall provide tools to build reports from WARC files.
-NFR 16 — Repackaging filters can be used by the summary module.
-FR 27 — It shall be possible to export summaries in various formats (e.g., XML, CSV).
-FR 28 — Enhance the WARC browser to display aggregated WARCs summaries in its UI.
-FR 29 — Enhance the WARC browser to display a manifest of WARC files and their locations.
-FR 30 — Provide a ‘‘diff‘‘ tool to compare WARC sets based on defined criteria (e.g., timestamp, hostname, etc.).
-FR 31 — Provide a tool to draw difference graphs between WARC collections (see FR 30).
-FR 32 — Provide a way to view crawls deltas for quality assurance.
-FR 33 — Implement WARC browser server side rewriting
-FR 34 — Integrate a proxy mode inside the WARC browser
-FR 35 — Integrate the full-text search (search-tools project) module with the WARC browser to provide users with WARC indexing/searching capabilities.
+FR 24 -- Repackaging will allow pre and post record, file and job operations FR 24.1 -- Pre operation can prevent a file or record being processed by returning value Options will specify a number of filters, based on URL, timestamp, WARC metadata, etc., using both simple and advanced regex mode (similar to ‘‘grep -e’’).
+FR 25 — Each repackaged WARC file shall include a user-defined METADATA record which will describe the extraction context (e.g., filter used, involved WARC files, ...
+FR 26 — The migration framework shall provide tools to build reports from WARC files The summary tool also enables fine grained manipulation of the reports and the production of useful variations.
+NFR 16 — Repackaging filters can be used by the summary module FR 27 — It shall be possible to export summaries in various formats (e.g., XML, ) WARC Tools Phase III Functional Requirements Specification 7 This command will also have options for XML and  output and filtering, for example, to restrict the report by time ranges, domain or other metadata values.
+FR 28 — Enhance the WARC browser to display aggregated WARCs summaries in its UI FR 29 — Enhance the WARC browser to display a manifest of WARC files and their locations Quality Assurance Tool WARC Comparator A tool will be created to make a comparison of similar crawls, based on analysis of their WARC files.
+FR 30 — Provide a ‘‘diff‘‘ tool to compare WARC sets based on defined criteria (e.g., timestamp, hostname, etc.) FR 31 — Provide a tool to draw difference graphs between WARC collections (see FR 30) A WARC ’’set comparator’’ enables comparison of crawl results contained in two sets of WARC files.
+FR 32 — Provide a way to view crawls deltas for quality assurance For example, consider a monthly crawl of “www.foo.org”.
+FR 33 — Implement WARC browser server side rewriting FR 34 — Integrate a proxy mode inside the WARC browser Another enhancement is to ensure the Search Tools project is updated and integrated; this will produce full text indexes and provide full-text search functionality to the WARC Browser and on the command line.
+FR 35 — Integrate the full-text search (search-tools project) module with the WARC browser to provide users with WARC indexing or searching capabilities.
