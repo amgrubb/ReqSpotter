@@ -30,3 +30,6 @@ NFRLocator contains an Eclipse which uses Maven do the builds.  Java 1.8 is curr
     c) Go to Eclipse preferences. In Java --> Compiler, switch the compiler compliance level to 1.8.
     
 5. You can run the project locally on Eclipse or through the terminal.
+
+TODO: add instructions about how to input PDF of SRS document.
+TODO: add instructions about how to run the program.
