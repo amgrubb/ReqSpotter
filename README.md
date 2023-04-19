@@ -5,7 +5,7 @@ The original project finds and categorizes non-functional requirements within un
 
 **Our additions/interpretation:**
 
-Produce a list of requirements given an SRS document in txt format. 
+Produce a txt file of requirements in an SRS document given in PDF format. 
 
 **Source Code:**
 
