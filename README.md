@@ -31,5 +31,8 @@ NFRLocator contains an Eclipse which uses Maven do the builds.  Java 1.8 is curr
     
 5. You can run the project locally on Eclipse or through the terminal.
 
+Inputing the PDF of your SRS document:
+In `GCController.java` go to line 333, and replace the function call to `reqLocator.driver("FILEPATH-TO-PDF","FILEPATH-TO-DEST-TXT");` with your filepaths of choice.
+
 TODO: add instructions about how to input PDF of SRS document.
 TODO: add instructions about how to run the program.
