@@ -139,10 +139,10 @@ public class InstanceLearner {
 		}
 		java.util.Arrays.sort(distances);
 		if (verbose) {
-			System.out.println("--------------------------");
-			System.out.println("k="+k +" distance from ("+distanceAlgorithm.getMethodName()+"): "+testSentence.getSentence());
+			// System.out.println("--------------------------");
+			// System.out.println("k="+k +" distance from ("+distanceAlgorithm.getMethodName()+"): "+testSentence.getSentence());
 			for (int i=distances.length-1; i>=0; i--) {
-				System.out.println(i+") "+distances[i].distance+": ("+distances[i].pos+") "  +_trainedSentences.get(distances[i].pos).sentence);
+				// System.out.println(i+") "+distances[i].distance+": ("+distances[i].pos+") "  +_trainedSentences.get(distances[i].pos).sentence);
 			}
 		}
 		
@@ -336,8 +336,7 @@ public class InstanceLearner {
 	
 	public void saveToFile(java.io.File f) throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
-		
-		mapper.writeValue(f, _trainedSentences.toArray(new Sentence[0]));		// this uses UTF-8
+		mapper.writeValue(f, _trainedSentences.toArray(new Document[0]));		// this uses UTF-8
 	}
 	
 	/**

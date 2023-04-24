@@ -1,0 +1,29 @@
+It will allow the administrator to update information about the
+Below are things to include for Maple Bakery’s website, organized by category.
+The website must allow the user to use credit card and gift card balances to purchase baked goods if the purchase is for
+They will also have the ability to create an account on the website to remember purchases
+When the user is browsing products, the website shall display the item photo, name, and price.
+The website shall have accounts for users that store information about the user including the credit card information, order history,
+are a few loyal regular customers that drive all the way from Boston, Connecticut, and even Canada to purchase Maple Bakery’s
+and should be easy to update.
+The website shall allow the administrator to grant users gift card balances to their account.
+When first opened, the website shall prompt users to register for an account or login.
+When adding items to the cart, the website shall verify the user has selected the flavor and count of the item they are purchasing.
+As a customer, I want to add items to a wish list so that I can purchase items at a later date.
+As a customer, I want to add items to a shopping cart so that I can purchase everything with one transaction.
+The website shall provide a way to save store products in a database.
+The website shall store a record of all payments to Maple Bakery.
+expanding and opening a location in Boston in the next 5 years.
+With an increase in popularity, Maple Bakery is in need of a sales website so that customers can order ahead of
+opened the bakery after quitting her job as a software engineer to pursue her passion for
+When an administrator is logged in, the website shall allow the administrator to view created users’ accounts and information
+User clicks the button and is shown a notification that the item is in their cart.
+include information about the bakery such as the hours of operation, location, and important news like sales or new varieties of
+The user selects the flavor of the item, if applicable.
+The website shall allow the administrator to view all users’ orders and mark their status such as received, processing, shipped,
+When the user is browsing products, the website shall provide capability of filtering items by category and sorting by price and
+When the user is entering payment information, the website must allow the user to use credit cards, gift card balance, or pay in
+The website shall allow the users to pay securely.
+Short description: This use case allows the administrator to add an item to the storefront.
+Short description: This use case allows you to add an item to your cart.
+Furthermore, Maple Bakery’s customers will be able to use the website to purchase products either for in-store

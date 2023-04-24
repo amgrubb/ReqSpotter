@@ -113,7 +113,7 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 		return _theGCController;
 	}
 	
-	private  GCController() {
+	GCController() {
 	}
 	
 	public void initialize(String wordNetDictionaryLocation, boolean parse) {
@@ -189,7 +189,7 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 		    props.put("annotators", "tokenize, ssplit, pos, posfix, lemma, ner, parse");
 		    
 		    props.put("customAnnotatorClass.posfix","edu.ncsu.csc.nl.model.CorrectPOSTags");
-		    _pipeline = new StanfordCoreNLP(props);				
+		    _pipeline = new StanfordCoreNLP(props);
 		}
 	}
 	
@@ -247,8 +247,9 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 	
 	/**
 	 * @param args
+	 * @throws Exception 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		try {
 		    for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
 		        if ("Nimbus".equals(info.getName())) {
@@ -265,6 +266,8 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 		String intialDocumentToParse    = "";
 		String initialLearner           = "";
 		String wordNetLocation          = "";
+		String inputFile = "";
+		String outputFile = "";
 		
 		for (int i=0;i < args.length; i++) {
 			if (args[i].equals("-l")) {
@@ -282,7 +285,13 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 			}
 			else if(args[i].startsWith("-w") && (i+1)<args.length ){
 				wordNetLocation = args[++i]; // document name is the next argument, we can skip processing it
-			}			
+			}
+			else if(args[i].startsWith("-f") && (i+1)<args.length ){
+			    inputFile = args[++i];
+			}
+			else if(args[i].startsWith("-o") && (i+1)<args.length ){
+			    outputFile = args[++i];
+			}
 		}
 		
 		boolean argumentError = false;
@@ -324,9 +333,16 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 	    	System.out.println(e);
 	    	System.exit(0);
 	    }
+	    
 	    		
-		controller._mainFrame.setVisible(true);   //GUI now has control of the application.
+		// controller._mainFrame.setVisible(true);   //GUI now has control of the application.
+
+	    ReqSpotter reqLocator = ReqSpotter.getReqSpotter();
+	    reqLocator.driver(inputFile, outputFile);
+//	    reqLocator.driver("./reqsPDF/maple-bakery.pdf","./output/maple-bakery-reqs.txt");
+		
 	}
+	
 	
 	public void  valueChanged(ListSelectionEvent lse) {
 		//System.out.println(lse);
@@ -472,7 +488,7 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 		}
 	}
 	
-	private void loadJSONDocumentFromFile(File file) throws Exception {
+	void loadJSONDocumentFromFile(File file) throws Exception {
 		_currentDocument = NLDocument.readFromJSONFile(file);	
 		_currentFileLocation = file;
 		
@@ -480,7 +496,8 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 			_currentDocumentID = _currentDocument.getElementAt(0).getDocumentID();
 		}
 		
-		setViewWithDocument();
+		// setViewWithDocument();
+		// this.setCurrentSentence(0,true,true);
 	}	
 	
 	private void loadJSONDocument() {

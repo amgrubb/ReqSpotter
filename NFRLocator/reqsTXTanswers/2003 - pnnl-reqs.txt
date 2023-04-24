@@ -1,0 +1,14 @@
+3.2.1.1 Users of the tool shall be classified into two types.
+In addition, the tool shall input fixed data provided by the user.
+3.2.2.1 The tool shall input sensed data in real time from data acquisition devices and the HVAC unit under diagnosis.
+Battelle Northwest, 2003  Page 16  Automated Diagnostics  Version: 1.1 Date: 8/28/2003  Software Requirements Specification Software Requirements Specification 1-1.DOC 8/29/2003  3.2.2.2 The tool shall permit sensed data to be input from an electronic file, though not simultaneously with sensed data from external acquisition hardware.
+3.2.2.7 Sensed data input to the tool shall be stored to permanent storage with a precision of three significant figures.
+3.2.2.8 Sensed data input to the tool shall be validated with respect to its expected range of values.
+The engineering units of sensed data input to the tool shall comply with the units listed in  3.2.2.10  Table 6 for the associated physical parameter measured prior to input to the diagnostics.
+The tool shall provide the capability to convert sensed data not provided in the units listed in  Battelle Northwest, 2003  Page 18  Automated Diagnostics  Version: 1.1 Date: 8/28/2003  
+Physical Parameter  Engineering Units for Sensed Data  Temperature  Degrees F  Current  Amps  3.2.2.11 The tool shall associate with each continuous parameter one or more tolerances each corresponding to a different sensitivity level for the tool.
+In addition, the tool shall be designed to permit expansion of diagnostic analysis to additional subsystems.
+3.2.3.1 The tool shall monitor performance and operational parameters listed in Table 7 for chillers and cooling towers and identify the specific faults in the specific fault categories listed in the table.
+3.2.3.2 With each fault identified in Table 7, the tool shall associate text describing the possible problem, causes, and a recommended fix.
+3.2.3.3 The tool shall be designed to permit the addition of diagnostic algorithms for other subsystems of HVAC units.
+3.2.3.6 The tool shall monitor the unit under diagnosis, either in real time or batch mode, for an indefinite period of time or until input data are no longer available, and log diagnostic results as they are determined.
