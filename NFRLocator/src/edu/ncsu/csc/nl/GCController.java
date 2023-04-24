@@ -266,6 +266,8 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 		String intialDocumentToParse    = "";
 		String initialLearner           = "";
 		String wordNetLocation          = "";
+		String inputFile = "";
+		String outputFile = "";
 		
 		for (int i=0;i < args.length; i++) {
 			if (args[i].equals("-l")) {
@@ -283,7 +285,13 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 			}
 			else if(args[i].startsWith("-w") && (i+1)<args.length ){
 				wordNetLocation = args[++i]; // document name is the next argument, we can skip processing it
-			}			
+			}
+			else if(args[i].startsWith("-f") && (i+1)<args.length ){
+			    inputFile = args[++i];
+			}
+			else if(args[i].startsWith("-o") && (i+1)<args.length ){
+			    outputFile = args[++i];
+			}
 		}
 		
 		boolean argumentError = false;
@@ -330,7 +338,8 @@ public class GCController implements ActionListener, ListSelectionListener, NLPE
 		// controller._mainFrame.setVisible(true);   //GUI now has control of the application.
 
 	    ReqSpotter reqLocator = ReqSpotter.getReqSpotter();
-	    reqLocator.driver("./reqsPDF/maple-bakery.pdf","./output/maple-bakery-reqs.txt");
+	    reqLocator.driver(inputFile, outputFile);
+//	    reqLocator.driver("./reqsPDF/maple-bakery.pdf","./output/maple-bakery-reqs.txt");
 		
 	}
 	
