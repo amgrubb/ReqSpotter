@@ -13,7 +13,7 @@ NFRLocator contains an Eclipse which uses Maven do the builds.  Java 1.8 is curr
 
 ## To Run NFRLocator on your local machine: ##
 
-1. Download WordNetDictionary at http://wordnetcode.princeton.edu/wn3.1.dict.tar.gz (https://wordnet.princeton.edu/wordnet/download/current-version/)
+1. Download WordNetDictionary at https://wordnetcode.princeton.edu/3.0/WordNet-3.0.tar.gz (https://wordnet.princeton.edu/download/current-version)
 2. Open the NFRLocator directory of this repo on Eclipse as a project. 
 3. Open the `GCController.java` file, located at `NFRLocator/srs/edu/ncsu/csc/nl`.
 4. Edit the run configurations to contain the following in the Arguments tab:
